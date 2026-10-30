@@ -39,21 +39,6 @@ h1, h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
-<style>
-.stApp {
-    background-color: #fff0f5;
-}
-h1, h2, h3 {
-    color: #c2185b;
-}
-.stButton button {
-    background-color: #e75480;
-    color: white;
-    border-radius: 12px;
-}
-</style>
-""", unsafe_allow_html=True)
-
 PHONE = "2349067662537"
 
 menu = {
