@@ -41,21 +41,7 @@ h1, h2, h3 {
     border-radius: 12px;
     width: 100%;
 }
-</style>
-""", unsafe_allow_html=True)
 
-<style>
-.stApp {
-    background-color: #fff0f5;
-    min-height: 100vh;
-}
-
-[data-testid="stAppViewContainer"] {
-    background-color: #fff0f5;
-    min-height: 100vh;
-}
-
-.block-container {
     width: 100%;
     max-width: 100%;
     padding: 1rem;
