@@ -9,7 +9,41 @@ st.set_page_config(
 )
 
 
+
 st.markdown("""
+<style>
+.stApp {
+    background: #fff0f5 !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background: #fff0f5 !important;
+}
+
+[data-testid="stMain"] {
+    width: 100% !important;
+}
+
+.block-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    margin: 0 auto !important;
+}
+
+h1, h2, h3 {
+    color: #c2185b !important;
+}
+
+.stButton button {
+    background-color: #e75480;
+    color: white;
+    border-radius: 12px;
+    width: 100%;
+}
+</style>
+""", unsafe_allow_html=True)
+
 <style>
 .stApp {
     background-color: #fff0f5;
