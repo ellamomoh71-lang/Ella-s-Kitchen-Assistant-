@@ -139,7 +139,63 @@ if st.button("Order through WhatsApp"):
 st.caption("Thank you for choosing Ella's Kitchen ❤️")
 st.divider()
 
-st.header("🤖 Ask Ella's Kitchen Assistant")
+st.divider()
+
+st.header("🤖 Ella's Kitchen Chat")
+
+st.write("Hi! Welcome to Ella's Kitchen. Ask me anything about our food!")
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+question = st.chat_input("Ask about our menu or prices...")
+
+if question:
+    st.session_state.messages.append({
+        "role": "user",
+        "content": question
+    })
+
+    q = question.lower()
+    reply = "Sorry, I don't know that yet. Please ask about our menu or prices."
+
+    if "jollof" in q:
+        reply = "Jollof rice with chicken costs ₦3,000."
+
+    elif "fried rice" in q:
+        reply = "Fried rice with chicken costs ₦3,000."
+
+    elif "meat pie" in q:
+        reply = "Yes! Meat pie costs ₦1,000."
+
+    elif "chin chin" in q:
+        reply = "Small chin chin is ₦500 and big chin chin is ₦1,000."
+
+    elif "cheapest" in q:
+        reply = "Our cheapest item is small chin chin at ₦500."
+
+    elif "menu" in q or "price" in q:
+        reply = "Here is our menu:\n" + "\n".join(
+            f"{item}: ₦{price:,}"
+            for item, price in menu.items()
+        )
+
+    elif "soup" in q:
+        reply = "We offer Ogbono, Okra and Egusi soup. Each listed option costs ₦2,500."
+
+    elif "hello" in q or "hi" in q:
+        reply = "Hello! Welcome to Ella's Kitchen. What delicious meal can I help you find?"
+
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": reply
+    })
+
+    st.rerun()
 
 st.write("Ask me about our menu, prices or ordering!")
 
