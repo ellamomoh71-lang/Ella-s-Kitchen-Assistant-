@@ -138,3 +138,50 @@ if st.button("Order through WhatsApp"):
         st.warning("Please enter your name and delivery details.")
 
 st.caption("Thank you for choosing Ella's Kitchen ❤️")
+st.divider()
+
+st.header("🤖 Ask Ella's Kitchen Assistant")
+
+st.write("Ask me about our menu, prices or ordering!")
+
+question = st.text_input(
+    "What would you like to know?"
+)
+
+if st.button("Ask Assistant"):
+    q = question.lower()
+
+    if "jollof" in q:
+        st.info("Jollof rice with chicken costs ₦3,000.")
+
+    elif "fried rice" in q:
+        st.info("Fried rice with chicken costs ₦3,000.")
+
+    elif "soup" in q or "swallow" in q:
+        st.info(
+            "We have Ogbono, Okra and Egusi soup. "
+            "Each listed soup option costs ₦2,500."
+        )
+
+    elif "chin chin" in q:
+        st.info(
+            "Small chin chin is ₦500 "
+            "and big chin chin is ₦1,000."
+        )
+
+    elif "order" in q or "whatsapp" in q:
+        st.info(
+            "Use the Place Your Order section above "
+            "to send your order through WhatsApp."
+        )
+
+    elif "price" in q or "menu" in q:
+        st.write("Here are our menu prices:")
+        for item, price in menu.items():
+            st.write(f"{item}: ₦{price:,}")
+
+    else:
+        st.warning(
+            "Sorry, I don't know that yet. "
+            "Please contact us on WhatsApp for help."
+)
