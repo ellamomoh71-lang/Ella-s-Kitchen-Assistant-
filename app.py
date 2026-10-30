@@ -9,7 +9,6 @@ st.set_page_config(
 )
 
 
-
 st.markdown("""
 <style>
 .stApp {
@@ -149,38 +148,64 @@ question = st.text_input(
 )
 
 if st.button("Ask Assistant"):
-    q = question.lower()
+    q = question.lower().strip()
 
-    if "jollof" in q:
-        st.info("Jollof rice with chicken costs ₦3,000.")
+    if "cheapest" in q:
+        cheapest = min(menu.values())
+        items = [
+            item for item, price in menu.items()
+            if price == cheapest
+        ]
+        st.info(
+            f"Our cheapest items are {', '.join(items)} "
+            f"at ₦{cheapest:,}."
+        )
+
+    elif "with" in q and "₦" in q:
+        import re
+        amount = re.search(r"₦\s*([\d,]+)", q)
+
+        if amount:
+            budget = int(amount.group(1).replace(",", ""))
+            affordable = [
+                (item, price)
+                for item, price in menu.items()
+                if price <= budget
+            ]
+
+            if affordable:
+                st.write("These items fit your budget:")
+                for item, price in affordable:
+                    st.write(f"{item}: ₦{price:,}")
+            else:
+                st.warning("No menu item fits that budget yet.")
+
+    elif "jollof" in q:
+        import re
+        numbers = re.findall(r"\d+", q)
+        quantity = int(numbers[0]) if numbers else 1
+        total = 3000 * quantity
+
+        st.success(
+            f"{quantity} plate(s) of jollof rice "
+            f"with chicken cost ₦{total:,}."
+        )
+
+    elif "meat pie" in q:
+        st.info("Yes! Meat pie costs ₦1,000.")
 
     elif "fried rice" in q:
         st.info("Fried rice with chicken costs ₦3,000.")
 
-    elif "soup" in q or "swallow" in q:
-        st.info(
-            "We have Ogbono, Okra and Egusi soup. "
-            "Each listed soup option costs ₦2,500."
-        )
-
-    elif "chin chin" in q:
-        st.info(
-            "Small chin chin is ₦500 "
-            "and big chin chin is ₦1,000."
-        )
-
-    elif "order" in q or "whatsapp" in q:
-        st.info(
-            "Use the Place Your Order section above "
-            "to send your order through WhatsApp."
-        )
-
-    elif "price" in q or "menu" in q:
-        st.write("Here are our menu prices:")
+    elif "menu" in q or "price" in q:
         for item, price in menu.items():
             st.write(f"{item}: ₦{price:,}")
 
     else:
+        st.info(
+            "I can help with our menu, prices, "
+            "budgets and food orders. Ask me anything!"
+        )
         st.warning(
             "Sorry, I don't know that yet. "
             "Please contact us on WhatsApp for help."
