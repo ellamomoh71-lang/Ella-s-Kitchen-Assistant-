@@ -5,10 +5,40 @@ from urllib.parse import quote
 st.set_page_config(
     page_title="Ella's Kitchen Assistant",
     page_icon="🍲",
-    layout="centered"
+    layout="wide"
 )
 
+""", unsafe_allow_html=True)
 st.markdown("""
+<style>
+.stApp {
+    background-color: #fff0f5;
+    min-height: 100vh;
+}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #fff0f5;
+    min-height: 100vh;
+}
+
+.block-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+}
+
+h1, h2, h3 {
+    color: #c2185b;
+}
+
+.stButton button {
+    background-color: #e75480;
+    color: white;
+    border-radius: 12px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 <style>
 .stApp {
     background-color: #fff0f5;
